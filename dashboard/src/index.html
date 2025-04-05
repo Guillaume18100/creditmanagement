@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteManager GPT - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .trades-timeline {
+            overflow-x: auto;
+        }
+        .timeline-container {
+            min-width: 1200px;
+        }
+        .trade-row {
+            height: 60px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+        .task-item {
+            position: absolute;
+            height: 40px;
+            top: 10px;
+            border-radius: 4px;
+            padding: 2px 8px;
+            color: white;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .task-terrassement { background-color: #FF5733; }
+        .task-gros-oeuvre { background-color: #33A8FF; }
+        .task-charpente { background-color: #33FF57; }
+        .task-plomberie { background-color: #A833FF; }
+        .task-electricite { background-color: #FFD433; }
+        .sidebar {
+            min-height: 100vh;
+            background-color: #343a40;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .card-dashboard {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar text-white p-0">
+                <div class="d-flex flex-column p-3">
+                    <h4 class="mb-4 text-center">SiteManager GPT</h4>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item mb-2">
+                            <a href="#" class="nav-link active text-white">
+                                <i class="bi bi-speedometer2 me-2"></i> Tableau de bord
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="#" class="nav-link text-white">
+                                <i class="bi bi-building me-2"></i> Projets
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="#" class="nav-link text-white">
+                                <i class="bi bi-envelope me-2"></i> Emails
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="#" class="nav-link text-white">
+                                <i class="bi bi-list-task me-2"></i> Tâches
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="#" class="nav-link text-white">
+                                <i class="bi bi-people me-2"></i> Corps de métiers
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="#" class="nav-link text-white">
+                                <i class="bi bi-exclamation-triangle me-2"></i> Problèmes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-10 main-content">
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <h2>Tableau de bord - Résidence Les Oliviers</h2>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-primary me-2">
+                            <i class="bi bi-download me-1"></i> Exporter
+                        </button>
+                        <button class="btn btn-success">
+                            <i class="bi bi-envelope me-1"></i> Analyser emails
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Statistics Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card card-dashboard bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Emails</h5>
+                                        <h3>128</h3>
+                                    </div>
+                                    <i class="bi bi-envelope fs-1 opacity-50"></i>
+                                </div>
+                                <div class="mt-2">12 nouveaux cette semaine</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card card-dashboard bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Tâches</h5>
+                                        <h3>45</h3>
+                                    </div>
+                                    <i class="bi bi-list-task fs-1 opacity-50"></i>
+                                </div>
+                                <div class="mt-2">28 terminées, 17 à venir</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card card-dashboard bg-warning text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Relances</h5>
+                                        <h3>8</h3>
+                                    </div>
+                                    <i class="bi bi-arrow-clockwise fs-1 opacity-50"></i>
+                                </div>
+                                <div class="mt-2">3 en attente de réponse</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card card-dashboard bg-danger text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Problèmes</h5>
+                                        <h3>5</h3>
+                                    </div>
+                                    <i class="bi bi-exclamation-triangle fs-1 opacity-50"></i>
+                                </div>
+                                <div class="mt-2">2 critiques à résoudre</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trades Timeline -->
+                <div class="card card-dashboard">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Coordination des corps de métiers</h5>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary me-2">Semaine</button>
+                            <button class="btn btn-sm btn-outline-secondary me-2">Mois</button>
+                            <button class="btn btn-sm btn-primary">Tout</button>
+                        </div>
+                    </div>
+                    <div class="card-body trades-timeline">
+                        <div class="timeline-container">
+                            <!-- Timeline Header -->
+                            <div class="d-flex border-bottom pb-2 mb-3">
+                                <div style="width: 150px;"></div>
+                                <div class="flex-grow-1 d-flex">
+                                    <div class="text-center" style="width: 100px;">Mai</div>
+                                    <div class="text-center" style="width: 100px;">Juin</div>
+                                    <div class="text-center" style="width: 100px;">Juillet</div>
+                                    <div class="text-center" style="width: 100px;">Août</div>
+                                    <div class="text-center" style="width: 100px;">Septembre</div>
+                                    <div class="text-center" style="width: 100px;">Octobre</div>
+                                    <div class="text-center" style="width: 100px;">Novembre</div>
+                                    <div class="text-center" style="width: 100px;">Décembre</div>
+                                    <div class="text-center" style="width: 100px;">Janvier</div>
+                                    <div class="text-center" style="width: 100px;">Février</div>
+                                    <div class="text-center" style="width: 100px;">Mars</div>
+                                    <div class="text-center" style="width: 100px;">Avril</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Trades Rows -->
+                            <div class="trade-row">
+                                <div style="width: 150px; position: absolute; top: 20px; font-weight: bold;">Terrassement</div>
+                                <div class="task-item task-terrassement" style="left: 150px; width: 120px;">Fondations</div>
+                                <div class="task-item task-terrassement" style="left: 280px; width: 80px;">Drainage</div>
+                            </div>
+                            
+                            <div class="trade-row">
+                                <div style="width: 150px; position: absolute; top: 20px; font-weight: bold;">Gros Œuvre</div>
+                                <div class="task-item task-gros-oeuvre" style="left: 220px; width: 200px;">Construction murs</div>
+                                <div class="task-item task-gros-oeuvre" style="left: 430px; width: 150px;">Dalle étage</div>
+                            </div>
+                            
+                            <div class="trade-row">
+                                <div style="width: 150px; position: absolute; top: 20px; font-weight: bold;">Charpente</div>
+                                <div class="task-item task-charpente" style="left: 390px; width: 180px;">Installation</div>
+                            </div>
+                            
+                            <div class="trade-row">
+                                <div style="width: 150px; position: absolute; top: 20px; font-weight: bold;">Plomberie</div>
+                                <div class="task-item task-plomberie" style="left: 440px; width: 140px;">Tuyauterie</div>
+                                <div class="task-item task-plomberie" style="left: 640px; width: 120px;">Sanitaires</div>
+                            </div>
+                            
+                            <div class="trade-row">
+                                <div style="width: 150px; position: absolute; top: 20px; font-weight: bold;">Électricité</div>
+                                <div class="task-item task-electricite" style="left: 470px; width: 160px;">Câblage</div>
+                                <div class="task-item task-electricite" style="left: 700px; width: 100px;">Appareillage</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Latest Issues and Emails -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-dashboard">
+                            <div class="card-header">
+                                <h5 class="mb-0">Derniers problèmes détectés</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-danger me-2">Critique</span>
+                                            Retard de livraison matériaux toiture
+                                        </div>
+                                        <span class="text-muted small">Aujourd'hui</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-warning me-2">Moyen</span>
+                                            Chevauchement plomberie et électricité
+                                        </div>
+                                        <span class="text-muted small">Hier</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-danger me-2">Critique</span>
+                                            Non-conformité dalle étage
+                                        </div>
+                                        <span class="text-muted small">2 jours</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-warning me-2">Moyen</span>
+                                            Pénalité échafaudage
+                                        </div>
+                                        <span class="text-muted small">3 jours</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card card-dashboard">
+                            <div class="card-header">
+                                <h5 class="mb-0">Derniers emails importants</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-primary me-2">Info</span>
+                                            Planning réunion de chantier semaine 18
+                                        </div>
+                                        <span class="text-muted small">11:45</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-success me-2">Validé</span>
+                                            Approbation devis supplémentaire isolation
+                                        </div>
+                                        <span class="text-muted small">Hier</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-danger me-2">Urgent</span>
+                                            Infiltration d'eau niveau -1
+                                        </div>
+                                        <span class="text-muted small">2 jours</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-secondary me-2">Admin</span>
+                                            Facture mensuelle sous-traitants
+                                        </div>
+                                        <span class="text-muted small">3 jours</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Pour un prototype, ce serait juste des données statiques.
+        // Dans une vraie implémentation, il faudrait charger les données via l'API.
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dashboard loaded');
+        });
+    </script>
+</body>
+</html> 
